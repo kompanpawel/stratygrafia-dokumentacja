@@ -8,6 +8,7 @@ type RawLayer = Omit<StratigraphyLayer, 'number'>;
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [LayerFormComponent, StratigraphyTableComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
