@@ -28,8 +28,7 @@ export type LayerTypeName =
   | 'folie_metalowe_zlocenia'
   | 'zloto_w_proszku_bronzy'
   | 'wosk_masy_dublazowe'
-  | 'klej'
-  | 'ubytek';
+  | 'klej';
 
 export interface LayerConfig {
   type: LayerTypeName;
@@ -50,8 +49,8 @@ export interface StratigraphyLayer {
 }
 
 export const LAYER_CONFIGS: LayerConfig[] = [
-  { type: 'plotno', label: 'Płótno', imagePath: 'assets/obrazki/Plotno.jpg' },
-  { type: 'drewno', label: 'Drewno', imagePath: 'assets/obrazki/Drewno.jpg' },
+  { type: 'plotno', label: 'Płótno / Podobrazie', imagePath: 'assets/obrazki/Plotno.jpg' },
+  { type: 'drewno', label: 'Drewno / Krosno', imagePath: 'assets/obrazki/Drewno.jpg' },
   { type: 'mur', label: 'Mur', imagePath: 'assets/obrazki/Mur.jpg' },
   { type: 'kamien', label: 'Kamień', imagePath: 'assets/obrazki/kamień.jpg' },
   { type: 'ceramika', label: 'Ceramika', imagePath: 'assets/obrazki/ceramika.jpg' },
@@ -81,8 +80,7 @@ export const LAYER_CONFIGS: LayerConfig[] = [
   { type: 'folie_metalowe_zlocenia', label: 'Folie metalowe / złocenia / srebrzenia', imagePath: 'assets/obrazki/folie metalowe_złocenia_srebrzenia.jpg' },
   { type: 'zloto_w_proszku_bronzy', label: 'Złoto w proszku / brązy pozłotnicze', imagePath: 'assets/obrazki/złoto w proszku_brązy pozłotnicze.jpg' },
   { type: 'wosk_masy_dublazowe', label: 'Wosk / masy dublażowe', imagePath: 'assets/obrazki/wosk_masy dublażowe.jpg' },
-  { type: 'klej', label: 'Klej', imagePath: 'assets/obrazki/klej.jpg' },
-  { type: 'ubytek', label: 'Ubytek', imagePath: 'assets/obrazki/ubytek.jpg' },
+  { type: 'klej', label: 'Klej', imagePath: 'assets/obrazki/klej.jpg' }
 ];
 
 export const LAYER_CONFIG_MAP = new Map<LayerTypeName, LayerConfig>(

@@ -191,7 +191,6 @@ const LAYER_TEXTURE_MAP: Record<LayerType, string> = {
   zloto_w_proszku_bronzy:          'assets/obrazki/złoto w proszku_brązy pozłotnicze.jpg',
   wosk_masy_dublazowe:             'assets/obrazki/wosk_masy dublażowe.jpg',
   klej:                            'assets/obrazki/klej.jpg',
-  ubytek:                          'assets/obrazki/ubytek.jpg',
 };
 ```
 
