@@ -1,0 +1,92 @@
+.app-shell {
+  min-height: 100vh;
+  background: #f5f0e8;
+  font-family: 'Georgia', serif;
+}
+
+.app-header {
+  background: #2e241a;
+  color: #f5ead8;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.app-subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #b8a98a;
+  font-style: italic;
+}
+
+.app-main {
+  margin: 0 auto;
+  padding: 1.5rem 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.table-section {
+  background: #fff;
+  border: 1px solid #d0c9b8;
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+}
+
+.section-title {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3a3226;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.layer-count {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #8a7a6a;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.section-header .section-title {
+  margin: 0;
+}
+
+.btn-export {
+  padding: 0.45rem 1rem;
+  background: #4a3c2e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.btn-export:hover {
+  background: #6a5a46;
+}

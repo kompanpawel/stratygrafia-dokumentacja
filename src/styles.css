@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+  color: #2a2218;
+  background: #f5f0e8;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Georgia', serif;
+  font-weight: 700;
+}
