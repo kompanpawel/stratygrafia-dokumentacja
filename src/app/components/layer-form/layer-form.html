@@ -1,0 +1,100 @@
+<section class="layer-form">
+  <h2>{{ sectionTitle() }}</h2>
+
+  <div class="form-row">
+    <div class="field">
+      <label for="layer-type">Rodzaj warstwy</label>
+      <select
+        id="layer-type"
+        [ngModel]="selectedType()"
+        (ngModelChange)="onTypeChange($event)"
+      >
+        @for (config of configs; track config.type) {
+          <option [value]="config.type">{{ config.label }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="layer-percent">Procent zachowania (%)</label>
+      <input
+        id="layer-percent"
+        type="number"
+        min="0"
+        max="100"
+        [ngModel]="percentage()"
+        (ngModelChange)="onPercentageChange($event)"
+      />
+    </div>
+
+    <div class="field">
+      <label for="layer-thickness">Grubość warstwy (mm)</label>
+      <input
+        id="layer-thickness"
+        type="text"
+        placeholder="np. 0.5 lub 0.5–1.2"
+        [ngModel]="thickness()"
+        (ngModelChange)="onThicknessChange($event)"
+      />
+    </div>
+
+    <div class="field">
+      <label for="layer-phase">Faza chronologiczna</label>
+      <input
+        id="layer-phase"
+        type="text"
+        placeholder="np. I, II, 1876 r."
+        [ngModel]="chronologicalPhase()"
+        (ngModelChange)="onPhaseChange($event)"
+      />
+    </div>
+
+    <div class="field">
+      <label for="layer-dating">Datowanie</label>
+      <input
+        id="layer-dating"
+        type="text"
+        placeholder="np. XVII w., 1650–1700"
+        [ngModel]="dating()"
+        (ngModelChange)="onDatingChange($event)"
+      />
+    </div>
+
+    <button class="btn-add" (click)="submit()">+ {{ sectionTitle() }}</button>
+  </div>
+
+  @if (selectedConfig(); as config) {
+    <div class="preview">
+      <span class="preview-label">Podgląd wzoru:</span>
+      <div
+        class="preview-texture"
+        [style.backgroundImage]="getBackgroundStyle(config.imagePath)"
+        [title]="config.label"
+      ></div>
+      <div class="preview-bar-wrap">
+        @if (fillFromRight()) {
+          <div
+            class="preview-bar-empty"
+            [style.width.%]="100 - percentage()"
+          ></div>
+          <div
+            class="preview-bar-fill"
+            [style.width.%]="percentage()"
+            [style.backgroundImage]="getBackgroundStyle(config.imagePath)"
+          ></div>
+        } @else {
+          <div
+            class="preview-bar-fill"
+            [style.width.%]="percentage()"
+            [style.backgroundImage]="getBackgroundStyle(config.imagePath)"
+          ></div>
+          <div
+            class="preview-bar-empty"
+            [style.width.%]="100 - percentage()"
+          ></div>
+        }
+      </div>
+      <span class="preview-pct-label">{{ percentage() }}% zachowania</span>
+    </div>
+  }
+</section>

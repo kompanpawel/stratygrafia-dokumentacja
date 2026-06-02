@@ -1,0 +1,126 @@
+<div class="table-wrap">
+  @if (layers().length === 0) {
+    <div class="empty-state">
+      <p>Brak warstw. Dodaj pierwszą warstwę powyżej.</p>
+      <p class="hint">Warstwy dodawaj od dołu – pierwsza dodana warstwa to podłoże (nr n), każda kolejna trafia na górę jako nr 1.</p>
+    </div>
+  } @else {
+    <table class="stratygrafia-table">
+      <thead>
+        <tr>
+          <th class="col-nr">Nr<br>warstwy</th>
+          <th class="col-texture">Oznaczenie graficzne warstwy</th>
+          <th class="col-name">Charakterystyka warstwy</th>
+          <th class="col-thickness">Grubość warstwy (mm)</th>
+          <th class="col-phase">Faza<br>chronologiczna</th>
+          <th class="col-dating">Datowanie</th>
+          <th class="col-action"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of layerRows(); track row.layer.id) {
+          <tr>
+            <td class="col-nr">
+              <input
+                class="number-input"
+                type="number"
+                [min]="1"
+                [max]="layers().length"
+                [ngModel]="row.layer.number"
+                (change)="onNumberChange(row.layer.id, $any($event.target).value)"
+              />
+            </td>
+            <td class="col-texture">
+              <div class="texture-bar">
+                @if (getConfig(row.layer); as config) {
+                  @if (row.layer.fillFromRight) {
+                    <div
+                      class="texture-empty"
+                      [style.width.%]="100 - row.layer.percentage"
+                    ></div>
+                    <div
+                      class="texture-fill"
+                      [style.width.%]="row.layer.percentage"
+                      [style.backgroundImage]="getBackgroundStyle(config.imagePath)"
+                      [title]="config.label + ' – ' + row.layer.percentage + '%'"
+                    ></div>
+                  } @else {
+                    <div
+                      class="texture-fill"
+                      [style.width.%]="row.layer.percentage"
+                      [style.backgroundImage]="getBackgroundStyle(config.imagePath)"
+                      [title]="config.label + ' – ' + row.layer.percentage + '%'"
+                    ></div>
+                    <div
+                      class="texture-empty"
+                      [style.width.%]="100 - row.layer.percentage"
+                    ></div>
+                  }
+                } @else {
+                  <div
+                    class="texture-empty"
+                    [style.width.%]="100"
+                  ></div>
+                }
+              </div>
+            </td>
+            <td class="col-name">
+              <input
+                class="name-input"
+                type="text"
+                [ngModel]="row.layer.customName ?? getConfig(row.layer)?.label ?? ''"
+                (ngModelChange)="onNameChange(row.layer.id, $event)"
+              />
+            </td>
+            <td class="col-thickness">
+              <input
+                class="thickness-input"
+                type="text"
+                placeholder="—"
+                [ngModel]="row.layer.thickness ?? ''"
+                (ngModelChange)="onThicknessChange(row.layer.id, $event)"
+              />
+            </td>
+            <td
+              class="col-phase"
+              [class.phase-single]="row.phaseGroupPos === 'single'"
+              [class.phase-first]="row.phaseGroupPos === 'first'"
+              [class.phase-middle]="row.phaseGroupPos === 'middle'"
+              [class.phase-last]="row.phaseGroupPos === 'last'"
+            >
+              <input
+                class="phase-input"
+                type="text"
+                placeholder="—"
+                [ngModel]="row.layer.chronologicalPhase ?? ''"
+                (ngModelChange)="onPhaseChange(row.layer.id, $event)"
+              />
+            </td>
+            <td
+              class="col-dating"
+              [class.phase-single]="row.datingGroupPos === 'single'"
+              [class.phase-first]="row.datingGroupPos === 'first'"
+              [class.phase-middle]="row.datingGroupPos === 'middle'"
+              [class.phase-last]="row.datingGroupPos === 'last'"
+            >
+              <input
+                class="phase-input"
+                type="text"
+                placeholder="—"
+                [ngModel]="row.layer.dating ?? ''"
+                (ngModelChange)="onDatingChange(row.layer.id, $event)"
+              />
+            </td>
+            <td class="col-action">
+              <button
+                class="btn-remove"
+                (click)="remove(row.layer.id)"
+                title="Usuń warstwę"
+              >✕</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
