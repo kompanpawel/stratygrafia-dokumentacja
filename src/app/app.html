@@ -1,7 +1,7 @@
 <div class="app-shell">
   <header class="app-header">
     <h1>Stratygrafia</h1>
-    <p class="app-subtitle">Dokumentacja warstw konserwatorskich</p>
+    <p class="app-subtitle">Kreator tabeli stratygraficznej</p>
   </header>
 
   <main class="app-main">
@@ -22,7 +22,10 @@
         </h2>
         @if (layers().length > 0) {
           <button class="btn-export" (click)="exportToWord()" title="Eksportuj do Word (.docx)">
-            ⬇ Eksportuj do Word
+            <svg class="save">
+              <use href="assets/save.svg#save"></use>
+            </svg>
+            Eksportuj do Word
           </button>
         }
       </div>
@@ -30,6 +33,7 @@
         [layers]="layers()"
         (layerRemove)="removeLayer($event)"
         (layerNumberChange)="reorderLayer($event)"
+        (layerPercentageChange)="updateLayerPercentage($event)"
         (layerThicknessChange)="updateLayerThickness($event)"
         (layerPhaseChange)="updateLayerPhase($event)"
         (layerDatingChange)="updateLayerDating($event)"

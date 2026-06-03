@@ -1,0 +1,12 @@
+<dialog #nativeDialog (close)="onClose()">
+  <div class="modal-content">
+    <h3>Edycja warstwy: {{ name() }} </h3>
+
+    <span><input [(ngModel)]="localValue" class="form-control" /> %</span>
+
+    <div class="modal-actions">
+      <button type="button" class="secondary-btn" (click)="closeModal()">Anuluj</button>
+      <button type="button" class="primary-btn" (click)="saveModal()">Zapisz</button>
+    </div>
+  </div>
+</dialog>

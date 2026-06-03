@@ -31,7 +31,7 @@
               />
             </td>
             <td class="col-texture">
-              <div class="texture-bar">
+              <div class="texture-bar" (click)="openEditModal(row.layer.id, row.layer.percentage, getConfig(row.layer)?.label)">
                 @if (getConfig(row.layer); as config) {
                   @if (row.layer.fillFromRight) {
                     <div
@@ -124,3 +124,12 @@
     </table>
   }
 </div>
+
+<app-modal
+  [id]="activeRowId()"
+  [name]="activeNameValue()"
+  [initialValue]="activeInitialValue()"
+  [isOpen]="isModalOpen()"
+  (onSave)="handleSave($event)"
+  (onCancel)="closeModal()" />
+

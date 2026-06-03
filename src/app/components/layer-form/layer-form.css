@@ -98,7 +98,7 @@
 
 .preview-texture {
   width: 40px;
-  height: 40px;
+  height: 35px;
   border: 1px solid #b8a99a;
   border-radius: 3px;
   background-repeat: repeat;
@@ -110,7 +110,7 @@
   display: flex;
   flex: 1;
   min-width: 200px;
-  height: 40px;
+  height: 35px;
   border: 1px solid #b8a99a;
   border-radius: 3px;
   overflow: hidden;
@@ -118,7 +118,7 @@
 
 .preview-bar-fill {
   height: 100%;
-  background-repeat: repeat;
+  background-repeat: repeat-x;
   background-size: auto;
   transition: width 0.2s ease;
 }

@@ -174,11 +174,6 @@ function mergeCell(text: string, width: number, mergeType: PhaseMerge): TableCel
   });
 }
 
-/** @deprecated Użyj mergeCell */
-function phaseCell(text: string, mergeType: PhaseMerge): TableCell {
-  return mergeCell(text, COL_PHASE, mergeType);
-}
-
 /**
  * Dla każdej warstwy oblicza typ scalenia pionowego na podstawie podanego pola:
  * - 'restart': pierwsza w grupie kolejnych warstw z tą samą wartością

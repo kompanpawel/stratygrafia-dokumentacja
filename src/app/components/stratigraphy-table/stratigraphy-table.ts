@@ -1,6 +1,7 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LAYER_CONFIG_MAP, StratigraphyLayer } from '../../models/layer.model';
+import { Modal } from '../modal/modal';
 
 type PhaseGroupPos = 'single' | 'first' | 'middle' | 'last' | null;
 
@@ -12,7 +13,7 @@ interface LayerRow {
 
 @Component({
   selector: 'app-stratigraphy-table',
-  imports: [FormsModule],
+  imports: [FormsModule, Modal],
   templateUrl: './stratigraphy-table.html',
   styleUrl: './stratigraphy-table.css',
 })
@@ -20,10 +21,28 @@ export class StratigraphyTableComponent {
   readonly layers = input<StratigraphyLayer[]>([]);
   readonly layerRemove = output<string>();
   readonly layerNumberChange = output<{ id: string; newNumber: number }>();
+  readonly layerPercentageChange = output<{ id: string; percentage: number }>();
   readonly layerThicknessChange = output<{ id: string; thickness: string }>();
   readonly layerPhaseChange = output<{ id: string; phase: string }>();
   readonly layerDatingChange = output<{ id: string; dating: string }>();
   readonly layerNameChange = output<{ id: string; name: string }>();
+
+  isModalOpen = signal<boolean>(false);
+  activeRowId = signal<string>('');
+  activeInitialValue = signal<number>(0);
+  activeNameValue = signal<string | undefined>('');
+
+  openEditModal(id: string, percentage: number, name?: string): void {
+    this.activeRowId.set(id);
+    this.activeInitialValue.set(percentage);
+    this.activeNameValue.set(name);
+    this.isModalOpen.set(true);
+  }
+
+  handleSave(result: {id: string, newValue: number}): void {
+    this.layerPercentageChange.emit({ id: result.id, percentage: result.newValue });
+    this.closeModal()
+  }
 
   readonly layerRows = computed<LayerRow[]>(() => {
     const layers = this.layers();
@@ -83,6 +102,10 @@ export class StratigraphyTableComponent {
     }
   }
 
+  onPercentageChange(id: string, value: number): void {
+    this.layerPercentageChange.emit({id, percentage: value})
+  }
+
   onThicknessChange(id: string, value: string): void {
     this.layerThicknessChange.emit({ id, thickness: value });
   }
@@ -97,5 +120,9 @@ export class StratigraphyTableComponent {
 
   onNameChange(id: string, value: string): void {
     this.layerNameChange.emit({ id, name: value });
+  }
+
+  closeModal() {
+    this.isModalOpen.set(false);
   }
 }

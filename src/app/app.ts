@@ -50,6 +50,13 @@ export class App {
     );
   }
 
+  updateLayerPercentage(event: { id: string; percentage: number }): void {
+    this._layers.update(layers =>
+    layers.map(l =>
+      l.id === event.id ? { ...l, percentage: event.percentage } : l
+    ))
+  }
+
   updateLayerPhase(event: { id: string; phase: string }): void {
     this._layers.update(layers =>
       layers.map(l =>

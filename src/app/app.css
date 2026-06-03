@@ -76,7 +76,7 @@
 
 .btn-export {
   padding: 0.45rem 1rem;
-  background: #4a3c2e;
+  background: #1e517b;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -85,8 +85,16 @@
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.15s;
+  display: flex;
+  align-items: center;
 }
 
 .btn-export:hover {
-  background: #6a5a46;
+  background: rgb(37 98 156);
+}
+
+.save {
+  width: 16px;
+  height: 16px;
+  margin-right: 1rem;
 }
