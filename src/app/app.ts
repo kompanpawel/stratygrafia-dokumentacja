@@ -18,16 +18,16 @@ export class App {
 
   /**
    * Warstwy z automatyczną numeracją:
-   * - indeks 0 = warstwa na górze stosu (numer 1, najnowsza)
-   * - ostatni indeks = warstwa na dole (numer n, najstarsza)
-   * Każda nowo dodana warstwa trafia na górę i dostaje numer 1,
-   * a wszystkie poprzednie warstwy dostają wyższe numery.
+   * - indeks 0 = warstwa na górze stosu (numer n, najnowsza)
+   * - ostatni indeks = warstwa na dole (numer 1, najstarsza)
+   * Każda nowo dodana warstwa trafia na górę i dostaje numer n,
+   * a wszystkie poprzednie warstwy dostają niższe numery.
    */
   readonly layers = computed<StratigraphyLayer[]>(() => {
     const raw = this._layers();
     return raw.map((layer, index) => ({
       ...layer,
-      number: index + 1,
+      number: raw.length - index,
     }));
   });
 
@@ -87,14 +87,15 @@ export class App {
 
   reorderLayer(event: { id: string; newNumber: number }): void {
     this._layers.update(layers => {
-      const fromIndex = layers.findIndex(l => l.id === event.id);
+      const reversedLayers = layers.slice().reverse();
+      const fromIndex = reversedLayers.findIndex(l => l.id === event.id);
       if (fromIndex === -1) return layers;
       const toIndex = event.newNumber - 1;
       if (toIndex === fromIndex || toIndex < 0 || toIndex >= layers.length) return layers;
-      const updated = [...layers];
+      const updated = [...reversedLayers];
       const [moved] = updated.splice(fromIndex, 1);
       updated.splice(toIndex, 0, moved);
-      return updated;
+      return updated.slice().reverse();
     });
   }
 }

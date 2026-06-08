@@ -36,7 +36,7 @@
 }
 
 .field select,
-.field input[type='number'] {
+.field input {
   height: 2.25rem;
   padding: 0 0.6rem;
   border: 1px solid #b8a99a;
@@ -101,8 +101,6 @@
   height: 35px;
   border: 1px solid #b8a99a;
   border-radius: 3px;
-  background-repeat: repeat;
-  background-size: auto;
   flex-shrink: 0;
 }
 
