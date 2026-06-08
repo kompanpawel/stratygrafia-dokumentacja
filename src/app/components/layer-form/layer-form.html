@@ -66,11 +66,6 @@
   @if (selectedConfig(); as config) {
     <div class="preview">
       <span class="preview-label">Podgląd wzoru:</span>
-      <div
-        class="preview-texture"
-        [style.backgroundImage]="getBackgroundStyle(config.imagePath)"
-        [title]="config.label"
-      ></div>
       <div class="preview-bar-wrap">
         @if (fillFromRight()) {
           <div
